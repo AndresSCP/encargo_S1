@@ -1,20 +1,72 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="welcome-container" #tituloElement>
+    <h2>Bienvenido, {{ usuario }}!</h2>
   </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información Personal</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          #nombreInput
+          label="Nombre"
+          labelPlacement="floating"
+          [(ngModel)]="nombre"
+          placeholder="Ingrese su nombre"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          #apellidoInput
+          label="Apellido"
+          labelPlacement="floating"
+          [(ngModel)]="apellido"
+          placeholder="Ingrese su apellido"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Nivel de Educación"
+          labelPlacement="floating"
+          [(ngModel)]="nivelEducacion"
+          placeholder="Seleccione"
+        >
+          <ion-select-option value="basica">Básica</ion-select-option>
+          <ion-select-option value="media">Media</ion-select-option>
+          <ion-select-option value="superior">Superior</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Usando materialdesgin -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="button-container">
+        <ion-button expand="block" color="warning" (click)="limpiar()">
+          Limpiar
+        </ion-button>
+
+        <ion-button expand="block" color="success" (click)="mostrar()">
+          Mostrar
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
