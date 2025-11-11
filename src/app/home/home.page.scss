@@ -69,3 +69,86 @@ mat-form-field {
     background-color: white !important;
   }
 }
+
+.welcome-section {
+  text-align: center;
+  margin: 20px 0 30px 0;
+  
+  h2 {
+    color: var(--ion-color-primary);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 16px;
+  }
+}
+
+.task-card {
+  margin: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-content {
+    text-align: center;
+    padding: 30px 20px;
+
+    .card-icon {
+      font-size: 60px;
+      color: var(--ion-color-primary);
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 10px 0 5px 0;
+      color: var(--ion-color-dark);
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--ion-color-medium);
+      margin: 0;
+    }
+  }
+}
+
+ion-grid {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+ion-header,
+ion-toolbar[color="primary"] {
+  --background: none;
+  background: linear-gradient(to right, #1a237e, #0d47a1, #1976d2) !important;
+  color: #fff !important;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+ion-title {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+ion-button ion-icon {
+  color: #fff !important;
+}
+
+.card-icon {
+  color: #1565c0 !important; /* azul medio intenso */
+}
+.welcome-section h2 {
+  color: #0d47a1;
+}

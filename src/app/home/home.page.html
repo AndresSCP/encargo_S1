@@ -1,72 +1,65 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title>Mis Organizadores</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="welcome-container" #tituloElement>
+  <div class="welcome-section" #tituloElement>
     <h2>Bienvenido, {{ usuario }}!</h2>
+    <p>Selecciona un organizador</p>
   </div>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Información Personal</ion-card-title>
-    </ion-card-header>
+  <ion-grid>
+    <ion-row>
+      <!-- Tarjeta Trabajo -->
+      <ion-col size="12" size-md="6">
+        <ion-card class="task-card" button="true" (click)="navegarA('/tareas-trabajo')">
+          <ion-card-content class="card-content">
+            <ion-icon name="briefcase-outline" class="card-icon"></ion-icon>
+            <h3>Trabajo</h3>
+            <p>Organiza tus tareas laborales</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-    <ion-card-content>
-      <ion-item>
-        <ion-input
-          #nombreInput
-          label="Nombre"
-          labelPlacement="floating"
-          [(ngModel)]="nombre"
-          placeholder="Ingrese su nombre"
-        ></ion-input>
-      </ion-item>
+      <!-- Tarjeta Ejercicios -->
+      <ion-col size="12" size-md="6">
+        <ion-card class="task-card" button="true" (click)="navegarA('/tareas-workout')">
+          <ion-card-content class="card-content">
+            <ion-icon name="fitness-outline" class="card-icon"></ion-icon>
+            <h3>Ejercicios</h3>
+            <p>Planifica tus rutinas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-      <ion-item>
-        <ion-input
-          #apellidoInput
-          label="Apellido"
-          labelPlacement="floating"
-          [(ngModel)]="apellido"
-          placeholder="Ingrese su apellido"
-        ></ion-input>
-      </ion-item>
+      <!-- Tarjeta Casa -->
+      <ion-col size="12" size-md="6">
+        <ion-card class="task-card" button="true" (click)="navegarA('/tareas-casa')">
+          <ion-card-content class="card-content">
+            <ion-icon name="home-outline" class="card-icon"></ion-icon>
+            <h3>Casa</h3>
+            <p>Tareas del hogar</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-      <ion-item>
-        <ion-select
-          label="Nivel de Educación"
-          labelPlacement="floating"
-          [(ngModel)]="nivelEducacion"
-          placeholder="Seleccione"
-        >
-          <ion-select-option value="basica">Básica</ion-select-option>
-          <ion-select-option value="media">Media</ion-select-option>
-          <ion-select-option value="superior">Superior</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <!-- Usando materialdesgin -->
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
-      <div class="button-container">
-        <ion-button expand="block" color="warning" (click)="limpiar()">
-          Limpiar
-        </ion-button>
-
-        <ion-button expand="block" color="success" (click)="mostrar()">
-          Mostrar
-        </ion-button>
-      </div>
-    </ion-card-content>
-  </ion-card>
+      <!-- Tarjeta Estudios -->
+      <ion-col size="12" size-md="6">
+        <ion-card class="task-card" button="true" (click)="navegarA('/tareas-estudios')">
+          <ion-card-content class="card-content">
+            <ion-icon name="school-outline" class="card-icon"></ion-icon>
+            <h3>Estudios</h3>
+            <p>Organiza tu aprendizaje</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

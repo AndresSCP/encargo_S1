@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tareas de Estudios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="header-section" #headerElement>
+    <ion-icon name="school" class="page-icon"></ion-icon>
+    <h2>Organiza tu aprendizaje</h2>
+  </div>
+
+  <!-- Formulario agregar tarea -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nueva Tarea de Estudio</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Asignatura"
+          labelPlacement="floating"
+          [(ngModel)]="asignatura"
+          placeholder="Ej: Matemáticas"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Tema"
+          labelPlacement="floating"
+          [(ngModel)]="tema"
+          placeholder="Ej: Derivadas"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Tipo"
+          labelPlacement="floating"
+          [(ngModel)]="tipo"
+        >
+          <ion-select-option value="lectura">Lectura</ion-select-option>
+          <ion-select-option value="practica">Práctica</ion-select-option>
+          <ion-select-option value="examen">Examen</ion-select-option>
+          <ion-select-option value="proyecto">Proyecto</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Fecha límite"
+          labelPlacement="floating"
+          type="date"
+          [(ngModel)]="fechaLimite"
+        ></ion-input>
+      </ion-item>
+
+      <button mat-raised-button color="primary" (click)="agregarTarea()" class="add-button">
+          <ion-icon slot="start" name="add-circle"></ion-icon>
+          Agregar Tarea
+      </button>
+      
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de tareas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mis Tareas de Estudio ({{ tareas.length }})</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="tareas.length > 0">
+        <ion-item *ngFor="let tarea of tareas; let i = index" [class]="'tipo-' + tarea.tipo">
+          <ion-checkbox slot="start" [(ngModel)]="tarea.completada"></ion-checkbox>
+          <ion-label [class.completed]="tarea.completada">
+            <h3>{{ tarea.asignatura }} - {{ tarea.tema }}</h3>
+            <p>{{ tarea.tipo | titlecase }}</p>
+            <p *ngIf="tarea.fechaLimite" class="fecha">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ tarea.fechaLimite }}
+            </p>
+          </ion-label>
+          <ion-button fill="clear" slot="end" (click)="eliminarTarea(i)" color="danger">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <div *ngIf="tareas.length === 0" class="empty-state">
+        <ion-icon name="book-outline"></ion-icon>
+        <p>No hay tareas de estudio pendientes</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

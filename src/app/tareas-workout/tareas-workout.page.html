@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Rutinas de Ejercicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="header-section" #headerElement>
+    <ion-icon name="fitness" class="page-icon"></ion-icon>
+    <h2>Planifica tu entrenamiento</h2>
+  </div>
+
+  <!-- Formulario agregar ejercicio -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nueva Rutina</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Ejercicio"
+          labelPlacement="floating"
+          [(ngModel)]="nuevoEjercicio"
+          placeholder="Ej: Flexiones"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Series"
+          labelPlacement="floating"
+          type="number"
+          [(ngModel)]="series"
+          placeholder="3"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Repeticiones"
+          labelPlacement="floating"
+          type="number"
+          [(ngModel)]="repeticiones"
+          placeholder="12"
+        ></ion-input>
+      </ion-item>
+
+      <button mat-raised-button color="primary" (click)="agregarEjercicio()" class="add-button">
+          <ion-icon slot="start" name="add-circle"></ion-icon>
+          Agregar Tarea
+      </button>
+      
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de ejercicios -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mi Rutina ({{ ejercicios.length }})</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="ejercicios.length > 0">
+        <ion-item *ngFor="let ejercicio of ejercicios; let i = index">
+          <ion-checkbox slot="start" [(ngModel)]="ejercicio.completado"></ion-checkbox>
+          <ion-label [class.completed]="ejercicio.completado">
+            <h3>{{ ejercicio.nombre }}</h3>
+            <p>{{ ejercicio.series }} series x {{ ejercicio.repeticiones }} reps</p>
+          </ion-label>
+          <ion-button fill="clear" slot="end" (click)="eliminarEjercicio(i)" color="danger">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <div *ngIf="ejercicios.length === 0" class="empty-state">
+        <ion-icon name="barbell-outline"></ion-icon>
+        <p>No hay ejercicios en tu rutina</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    // Si las validaciones pasan, navegar a Home con el usuario
+    // Login correcto se da accesso a Home con el usuario
     let navigationExtras: NavigationExtras = {
       state: {
         usuario: this.usuario

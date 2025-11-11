@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tareas del Hogar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="header-section" #headerElement>
+    <ion-icon name="home" class="page-icon"></ion-icon>
+    <h2>Organiza tu hogar</h2>
+  </div>
+
+  <!-- Formulario agregar tarea -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nueva Tarea del Hogar</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Tarea"
+          labelPlacement="floating"
+          [(ngModel)]="nuevaTarea"
+          placeholder="Ej: Lavar platos"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Categoría"
+          labelPlacement="floating"
+          [(ngModel)]="categoria"
+        >
+          <ion-select-option value="limpieza">Limpieza</ion-select-option>
+          <ion-select-option value="cocina">Cocina</ion-select-option>
+          <ion-select-option value="lavanderia">Lavandería</ion-select-option>
+          <ion-select-option value="jardin">Jardín</ion-select-option>
+          <ion-select-option value="mantenimiento">Mantenimiento</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Frecuencia"
+          labelPlacement="floating"
+          [(ngModel)]="frecuencia"
+        >
+          <ion-select-option value="diaria">Diaria</ion-select-option>
+          <ion-select-option value="semanal">Semanal</ion-select-option>
+          <ion-select-option value="mensual">Mensual</ion-select-option>
+          <ion-select-option value="ocasional">Ocasional</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <button mat-raised-button color="primary" (click)="agregarTarea()" class="add-button">
+          <ion-icon slot="start" name="add-circle"></ion-icon>
+          Agregar Tarea
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de tareas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tareas del Hogar ({{ tareas.length }})</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="tareas.length > 0">
+        <ion-item *ngFor="let tarea of tareas; let i = index" [class]="'categoria-' + tarea.categoria">
+          <ion-checkbox slot="start" [(ngModel)]="tarea.completada"></ion-checkbox>
+          <ion-label [class.completed]="tarea.completada">
+            <h3>{{ tarea.nombre }}</h3>
+            <p>{{ tarea.categoria | titlecase }} • {{ tarea.frecuencia }}</p>
+          </ion-label>
+          <ion-button fill="clear" slot="end" (click)="eliminarTarea(i)" color="danger">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <div *ngIf="tareas.length === 0" class="empty-state">
+        <ion-icon name="home-outline"></ion-icon>
+        <p>No hay tareas del hogar pendientes</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,34 +1,32 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="login-page">
+  <div id="container">
+    <h1 class="app-title">Daily Flow</h1>
 
-<ion-content class="ion-padding">
-  <div class="login-container">
-    <ion-item>
-      <ion-input
-        label="Usuario"
-        labelPlacement="floating"
-        [(ngModel)]="usuario"
-        maxlength="8"
-        placeholder="Ingrese usuario"
-      ></ion-input>
-    </ion-item>
+    <div class="login-box">
+      <ion-item>
+        <ion-input
+          label="Usuario"
+          labelPlacement="floating"
+          [(ngModel)]="usuario"
+          maxlength="8"
+          placeholder="Ingrese usuario"
+        ></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input
-        label="Contraseña"
-        labelPlacement="floating"
-        type="password"
-        [(ngModel)]="password"
-        maxlength="4"
-        placeholder="****"
-      ></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input
+          label="Contraseña"
+          labelPlacement="floating"
+          type="password"
+          [(ngModel)]="password"
+          maxlength="4"
+          placeholder="****"
+        ></ion-input>
+      </ion-item>
 
-    <ion-button expand="block" (click)="ingresar()">
-      Ingresar
-    </ion-button>
+      <ion-button expand="block" (click)="ingresar()">
+        Ingresar
+      </ion-button>
+    </div>
   </div>
 </ion-content>
