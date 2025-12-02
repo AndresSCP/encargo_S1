@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="registro-container">
+
+    <div class="logo-section">
+      <ion-icon name="person-add" class="register-icon"></ion-icon>
+      <h2>Crear Cuenta</h2>
+      <p>Completa tus datos para registrarte</p>
+    </div>
+
+    <ion-card>
+      <ion-card-content>
+
+        <!-- Usuario -->
+        <ion-item>
+          <ion-input
+            label="Usuario"
+            labelPlacement="floating"
+            [(ngModel)]="usuario"
+            maxlength="8"
+            placeholder="3-8 caracteres"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Email -->
+        <ion-item>
+          <ion-input
+            label="Email"
+            labelPlacement="floating"
+            type="email"
+            [(ngModel)]="email"
+            placeholder="correo@ejemplo.com"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Contraseña -->
+        <ion-item>
+          <ion-input
+            label="Contraseña"
+            labelPlacement="floating"
+            type="password"
+            [(ngModel)]="password"
+            maxlength="4"
+            placeholder="4 dígitos"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Confirmación -->
+        <ion-item>
+          <ion-input
+            label="Confirmar contraseña"
+            labelPlacement="floating"
+            type="password"
+            [(ngModel)]="confirmarPassword"
+            maxlength="4"
+            placeholder="4 dígitos"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Botón registro -->
+        <ion-button expand="block" (click)="registrarse()" class="register-button">
+          <ion-icon name="person-add-outline" slot="start"></ion-icon>
+          Registrarse
+        </ion-button>
+
+        <!-- Ir al login -->
+        <div class="login-link">
+          <p>¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

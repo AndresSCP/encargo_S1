@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../services/auth';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: false,
+  standalone: false
 })
 export class LoginPage implements OnInit {
   usuario: string = '';
@@ -14,38 +15,46 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    private alertController: AlertController
-  ) { }
+    private alertController: AlertController,
+    private authService: AuthService,
+    private zone: NgZone
+  ) {}
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.zone.run(() => {
+        this.router.navigate(['/home']);
+      });
+    }
   }
 
   async ingresar() {
-    // Validacion usuario
+    // Validaciones...
     if (this.usuario.length < 3 || this.usuario.length > 8) {
       await this.mostrarAlerta('Error', 'El usuario debe tener entre 3 y 8 caracteres');
       return;
     }
 
-    // Validacion contraseña
     if (this.password.length !== 4 || !/^\d{4}$/.test(this.password)) {
       await this.mostrarAlerta('Error', 'La contraseña debe tener 4 dígitos numéricos');
       return;
     }
 
-    // Login correcto se da accesso a Home con el usuario
-    let navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario
-      }
-    };
-    this.router.navigate(['/home'], navigationExtras);
+    const loginExitoso = await this.authService.login(this.usuario, this.password);
+
+    if (loginExitoso) {
+      this.zone.run(() => {
+        this.router.navigate(['/home']);
+      });
+    } else {
+      await this.mostrarAlerta('Error', 'Usuario o contraseña incorrectos');
+    }
   }
 
   async mostrarAlerta(header: string, message: string) {
     const alert = await this.alertController.create({
-      header: header,
-      message: message,
+      header,
+      message,
       buttons: ['OK']
     });
     await alert.present();

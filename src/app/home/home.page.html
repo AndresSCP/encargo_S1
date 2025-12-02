@@ -60,6 +60,31 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
+
+      <!-- Tarjeta Cámara -->
+      <ion-col size="12" size-md="6">
+        <ion-card class="task-card" button="true" (click)="navegarA('/camera')">
+          <ion-card-content class="card-content">
+            <ion-icon name="camera-outline" class="card-icon"></ion-icon>
+            <h3>Cámara</h3>
+            <p>Tomar una foto</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Tarjeta Mapa -->
+      <ion-col size="12" size-md="6">
+        <ion-card class="task-card" button="true" (click)="navegarA('/maps')">
+          <ion-card-content class="card-content">
+            <ion-icon name="map-outline" class="card-icon"></ion-icon>
+            <h3>Mapa</h3>
+            <p>Ver mi ubicación</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
     </ion-row>
   </ion-grid>
+
+
 </ion-content>

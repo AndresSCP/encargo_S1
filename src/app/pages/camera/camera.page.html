@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cámara</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="takePicture()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Tomar Foto
+    </ion-button>
+
+    <ion-card *ngIf="photo">
+      <ion-card-header>     
+        <ion-card-title>Foto Capturada</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <img [src]="photo" style="width: 100%; border-radius: 8px;">
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
